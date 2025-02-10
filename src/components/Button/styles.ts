@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 interface MainButtonStyledProps {
-  disabled: boolean
+  disabled: boolean;
+  $isRed: boolean;
 }
 
 export const MainButton = styled.button<MainButtonStyledProps>`
@@ -10,10 +11,10 @@ export const MainButton = styled.button<MainButtonStyledProps>`
   outline: none;
   border: none;
   padding: 20px;
-  background:${({ disabled }) => disabled ? '#bebec7' : '#1f27f5'};
+  background:${({ disabled, $isRed }) => disabled ? '#bebec7' : $isRed ? '#f02e0c' : '#1f27f5'};
   border-radius: 4px;
   color: white;
-  font-family: Lato, Geneva, Tahoma, sans-serif;
+  font-family: Lato, Geneva, Tahoma, sans - serif;
   font-size: 16px;
   cursor: pointer;
 `
@@ -33,4 +34,5 @@ export const MainButton = styled.button<MainButtonStyledProps>`
 //   font-size: 16px;
 //   cursor: pointer;
 // }
+
 

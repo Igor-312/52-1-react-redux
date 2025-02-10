@@ -1,9 +1,9 @@
 import { ErrorMessage, InputContainer, InputElement, Label } from "./styles";
-import { InputProps } from "./types";
+import { InputProps } from './types'
 
 function Input({
   name,
-  type = "text",
+  type = 'text',
   placeholder,
   label,
   id,
@@ -28,3 +28,4 @@ function Input({
 }
 
 export default Input;
+

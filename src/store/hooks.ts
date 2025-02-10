@@ -10,3 +10,8 @@ import type { AppDispatch, RootState } from "./store"
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = useDispatch.withTypes<AppDispatch>()
 export const useAppSelector = useSelector.withTypes<RootState>()
+// Этот файл служит центральным узлом для повторного экспорта предварительно набранных хуков Redux.
+// Этот импорт ограничен в других местах, чтобы обеспечить единообразие
+// использование типизированных перехватчиков во всем приложении.
+// Здесь мы отключаем правило ESLint, потому что это назначенное место
+// для импорта и реэкспорта типизированных версий хуков.

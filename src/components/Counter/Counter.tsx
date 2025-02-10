@@ -1,36 +1,37 @@
 import Button from "../Button/Button";
-import {
-  CounterContainerStyled,
-  ButtonContainerStyled,
-  ResultContainerStyled,
-} from "./styles";
-import { useState } from "react";
+import { ButtonWrapper, CounterWrapper, ResultContainer } from "./styles";
+//9. Импортируем хуки для диспатча и получения данных (селекторов)
+import { useAppDispatch, useAppSelector } from "store/hooks";
+//10. Импортируем экшены и селекторы, которые были созданы и экспортированы  в файле со слайсом
+import { counterActions, counterSelectors } from "store/redux/counter/counterSlice";
 
 function Counter() {
-  const [counter, setCounter] = useState<number>(0);
+  // 11. Забираем значение каунтера из store
+  const counter = useAppSelector(counterSelectors.counterValue)
 
-  const onPlusClick = (): void => {
-    setCounter((prevValue) => {
-      return prevValue + 1;
-    });
-  };
+  //12. Получаем функцию dispatch, которую возвращает хук useDispatch
+  const dispatch = useAppDispatch()
 
-  console.log("counter in Counter Component", counter);
+  const onMinus = ()=>{
+    //13. Диспатчим экшен (передаём в вызов функции dispatch необходим идентификатор действия(action))
+    dispatch(counterActions.minus())
+  }
 
-  const onMinusClick = (): void => {
-    setCounter((prevValue) => prevValue - 1);
-  };
+  const onPlus = ()=>{
+    //13. Диспатчим экшен (передаём в вызов функции dispatch необходим идентификатор действия(action))
+    dispatch(counterActions.plus())
+  }
 
   return (
-    <CounterContainerStyled>
-      <ButtonContainerStyled>
-        <Button name="-" type="button" onClick={onMinusClick} />
-      </ButtonContainerStyled>
-      <ResultContainerStyled>{counter}</ResultContainerStyled>
-      <ButtonContainerStyled>
-        <Button name="+" type="button" onClick={onPlusClick} />
-      </ButtonContainerStyled>
-    </CounterContainerStyled>
+    <CounterWrapper>
+      <ButtonWrapper>
+        <Button name="-" type="button" onClick={onMinus} />
+      </ButtonWrapper>
+      <ResultContainer>{counter}</ResultContainer>
+      <ButtonWrapper>
+        <Button name="+" type="button" onClick={onPlus} />
+      </ButtonWrapper>
+    </CounterWrapper>
   );
 }
 
