@@ -33,3 +33,7 @@ export const AdviceText = styled.div`
  font-weight: bold;
  color: rebeccapurple;
 `
+export const Error = styled.div`
+color: red;
+font-size: 26px;
+`

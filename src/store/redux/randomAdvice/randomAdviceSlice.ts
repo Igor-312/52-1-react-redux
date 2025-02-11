@@ -18,7 +18,7 @@ export const randomAdviceSlice = createAppSlice({
       async (arg, thunkApi) => {
         try {
           const result = await axios.get('https://api.adviceslip.com/advice')
-          return result.data
+          return result.data //.slip.advice
         } catch (error) {
           return thunkApi.rejectWithValue(error)
         }
@@ -29,6 +29,7 @@ export const randomAdviceSlice = createAppSlice({
           state.error = undefined
         },
         fulfilled: (state: RandomAdviceSliceState, action: any) => {
+          // state.data = [...state.data, action.payload]
           state.data = [...state.data, action.payload.slip.advice]
           state.status = 'success'
         },
@@ -37,7 +38,8 @@ export const randomAdviceSlice = createAppSlice({
           state.status = 'error'
         }
       }
-    )
+    ),
+    deleteAdvices: create.reducer(()=>randomAdviceInitialState)
   }),
   selectors: {
     adviceData: (state: RandomAdviceSliceState) => state
